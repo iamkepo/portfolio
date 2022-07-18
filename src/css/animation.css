@@ -89,10 +89,10 @@
   border: 0.2vw solid #008CBA;
 }
 
-.presentation {
+.photo-img {
 	animation: morphing 10s infinite;
 }
-.presentation:hover{
+.photo-img:hover{
   animation-play-state: paused
 }	
 @keyframes morphing {
