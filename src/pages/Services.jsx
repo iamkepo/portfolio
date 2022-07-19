@@ -3,19 +3,19 @@ const Services = (props) => {
   const carts = [
     {
       title: "Standard",
-      offres: ["-Site Web Vitrine "],
+      offres: ["-Site Web Vitrine (ou Landing page)"],
       forfait: 499,
       desc: "Il s'agira de créer pour vous un site web Vitrine avec un service de designer intéger mais sans back-end"
     },
     {
       title: "Silver",
-      offres: ["-Application Web", "(Blog, E-commerce, ...)", "-Dashboard"],
+      offres: ["-Application Web", "(Blog, E-commerce, E-learning...)", "-Dashboard"],
       forfait: 999,
       desc: "Il s'agira de créer pour vous un site web Blog, E-commerce, ...; avec un service de designer intéger et avec un back-end"
     },
     {
       title: "Gold",
-      offres: ["-Application Mobile", "(Bonus un site web vitrine)", "-Dashboard"],
+      offres: ["-Application Mobile", "(Bonus un Landing page)", "-Dashboard"],
       forfait: 1999,
       desc: "Il s'agira de créer pour vous une appication Mobile Android ou IOS avec un service de designer intéger et avec un back-end"
     },
