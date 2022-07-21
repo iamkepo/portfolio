@@ -73,7 +73,7 @@ const Home = (props) => {
               <span className="strong"> Mobile</span> et <span className="strong"> Desktop</span> 
             </div>
             <div className="text">
-              J'ai également une assez bonne maitrise des langages de programmations et frameworks que j'ai eu à cité dans mes compétences.
+              J'ai également une assez bonne maitrise des langages de programmations et frameworks que j'ai eu à citer dans mes compétences.
             </div>
 
           </div>
