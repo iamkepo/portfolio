@@ -230,7 +230,7 @@ a {text-decoration: none;}
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-left: 5%;
 }
 .title {
@@ -244,7 +244,7 @@ a {text-decoration: none;}
   font-weight: bold;
 }
 .more {
-  width: 50%;
+  width: 100%;
   height: 15%;
   display: flex;
   align-items: center;
@@ -262,7 +262,7 @@ a {text-decoration: none;}
   justify-content: space-between;
 }
 .passeur-item {
-  width: 49%;
+  width: 40%;
   height: 60%;
   border: 0.5px solid #0c0707;
   display: flex;
@@ -273,7 +273,10 @@ a {text-decoration: none;}
   color: #0c0707;
   cursor: pointer;
 }
-
+.passeur-number {
+  font-size: 2vw;
+  font-weight: lighter;
+}
 .details {
   width: 35%;
   height: 100%;
@@ -436,46 +439,7 @@ a {text-decoration: none;}
   cursor: pointer;
 }
 
-.projets-list {
-  width: 100%;
-  height: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 21%);
-  grid-gap: 5%;
-  justify-content: center;
-}
-.projet {
-  min-width: 20%;
-  min-height: 20%;
-  border: 0.5px solid #ffffff;
-  background-image: url("../../public/folder-svgrepo-com.svg");
-  background-repeat: no-repeat;
-  background-size: 50% auto;
-  background-position: center top;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: space-evenly;
-  cursor: pointer;
-}
 
-.projet-active {
-  border: 2px solid #ffc423;
-}
-.folder-name {
-  font-size: 0.8vw;
-  text-align: center;
-}
-.detail-description {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  padding-left: 5%;
-  color: #FFFFFF;
-}
 .services {
   width: 100%;
   height: 100%;
@@ -580,15 +544,22 @@ a {text-decoration: none;}
   cursor: pointer;
 }
 
-.socials {
+.send-email{
   width: 100%;
-  height: 100%;
+  height: 90%;
   background-color: transparent; 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 5%;
+}
+.input-item {
+  width: 100%;
+  height: 15%;
+  border: 0.5px solid #000;
+  padding: 2%;
+  font-size: 1vw;
+  color: #000;
 }
 .socials-list {
   width: 100%;
@@ -601,18 +572,18 @@ a {text-decoration: none;}
   justify-content: space-around;
 }
 .social-item {
-  width: 30%;
+  width: 100%;
   height: 10%;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: flex-start;
-  color: #000;
+  color: #FFF;
 }
 .fa {
   width: 15%;
-  height: 100%;
+  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;

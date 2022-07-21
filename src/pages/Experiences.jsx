@@ -1,40 +1,8 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 const Experiences = (props) => {
+  
   const experiences = [
-    {
-      title: "Projets personnels",
-      projets: [
-        {
-          name: "Pixels war",
-          img: "",
-          link: "https://pixelswar.herokuapp.com/",
-          description: "Il s'agit d'un jeu web",
-          date: ""
-        },
-        {
-          name: "World Cube",
-          img: "",
-          link: "https://iamkepo.github.io/w_cube/",
-          description: "Il s'agit d'un monde 3D en cube",
-          date: ""
-        },
-        {
-          name: "World Sphère",
-          img: "",
-          link: "https://iamkepo.github.io/w_sphere/",
-          description: "Il s'agit d'un monde 3D en sphère",
-          date: ""
-        },
-        {
-          name: "Mon portfolio",
-          img: "",
-          link: "https://iamkepo.github.io/portfolio/",
-          description: "Il s'agit de mon portfolio",
-          date: ""
-        },
-      ],
-    },
     {
       title: "Collaborations",
       projets: [
@@ -43,21 +11,21 @@ const Experiences = (props) => {
           img: "url('./Tablette.png')",
           link: "https://classe19.com/",
           description: "Classe19 est une tablette éducative donnant un accès continu à tout un ensemble de ressources éducatives dans les matières principales (Mathématiques, PCT, SVT, Français et Anglais).",
-          date: ""
+          date: "2020-2021"
         },
         {
           name: "PharMap",
           img: "url('./phone.png')",
           link: "https://pharmap.co",
           description: "PharMap est une appication qui te permet de trouve le médicament que tu cherches en un clic partout au Bénin",
-          date: ""
+          date: "2021"
         },
         {
           name: "Sentinelle",
           img: "url('./sentinelle.webp')",
           link: "",
           description: "Visite technique, assurance, TVM et bien plus encore… voici autant de documents et pièces qu’il faut absolument garder à jour en tant que propriétaire de voiture.",
-          date: ""
+          date: "2021"
         },
       ],
     },
@@ -66,10 +34,43 @@ const Experiences = (props) => {
       projets: [
         {
           name: "D2A",
-          img: "",
+          img: "url('./d2a.png')",
           link: "https://d2a.swiitch.design/",
           description: "DU PROFESSIONNALISME AU SERVICE DU DROIT ET DE LA JUSTICE, Nous vous accompagnons dans la recherche de solutions à vos difficultés et anticipons sur vos situations heureuses ou moins favorables.",
-          date: ""
+          date: "2020"
+        },
+      ],
+    },
+    {
+      title: "Projets personnels",
+      projets: [
+        {
+          name: "Pixels war",
+          img: "url('./pixelswar.png')",
+          link: "https://pixelswar.herokuapp.com/",
+          description: "Il s'agit d'un jeu web",
+          date: "2021-2022"
+        },
+        {
+          name: "World Cube",
+          img: "url('./w_cube.png')",
+          link: "https://iamkepo.github.io/w_cube/",
+          description: "Il s'agit d'un monde 3D en cube",
+          date: "2021-2022"
+        },
+        {
+          name: "World Sphère",
+          img: "url('./w_sphere.png')",
+          link: "https://iamkepo.github.io/w_sphere/",
+          description: "Il s'agit d'un monde 3D en sphère",
+          date: "2022"
+        },
+        {
+          name: "Mon portfolio",
+          img: "url('./portfolio.png')",
+          link: "https://iamkepo.github.io/portfolio/",
+          description: "Il s'agit de mon portfolio",
+          date: "2022"
         },
       ],
     }
@@ -109,8 +110,8 @@ const Experiences = (props) => {
 
             <div className="description">
               <div className="title">{experiences[parseInt(params.group)].projets[parseInt(params.item)].name}</div>
-              <div className="text">{experiences[parseInt(params.group)].projets[parseInt(params.item)].description}
-              </div>
+              <div className="text">{experiences[parseInt(params.group)].projets[parseInt(params.item)].description}</div>
+              <div className="number">{experiences[parseInt(params.group)].projets[parseInt(params.item)].date}</div>
               <a href={experiences[parseInt(params.group)].projets[parseInt(params.item)].link} className="more"> Voir + </a>
             </div>
           </div>
@@ -120,10 +121,10 @@ const Experiences = (props) => {
         <div className="passeur">
           <Link className="passeur-item" to={"/experiences/"+parseInt(params.group)+"/"+(parseInt(params.item) !== 0 ? (parseInt(params.item)-1) : 0)}> 
             <i className="fas fa-arrow-left"></i> 
-            Précédent 
-            </Link>
+          </Link>
+          <div className="passeur-number">{parseInt(params.item)+1} / {experiences[parseInt(params.group)].projets.length}</div>
           <Link className="passeur-item" to={"/experiences/"+parseInt(params.group)+"/"+(experiences[parseInt(params.group)].projets.length-1 > parseInt(params.item) ? (parseInt(params.item)+1) : experiences[parseInt(params.group)].projets.length-1)}> 
-            Suivent <i className="fas fa-arrow-right"></i> 
+            <i className="fas fa-arrow-right"></i> 
           </Link>
         </div>
 

@@ -116,12 +116,7 @@
 .projets {
   animation: transx 1.5s ;
 }
-.projet {
-  transition: 1s;
-}
-.projet:hover {
-  border: 1px solid #ffc423;
-}
+
 .box-inner {
   transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
   transform-style: preserve-3d;
@@ -145,7 +140,7 @@
   transition: 0.5s;
 }
 .social-item:hover {
-  border: 1px solid #000000;
+  border: 1px solid #FFF;
 }
 .btn-contact:hover {
   transform: scale(1.02);
