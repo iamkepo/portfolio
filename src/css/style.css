@@ -162,20 +162,22 @@ a {text-decoration: none;}
 .category-item {
   width: 20%;
   height: 70%;
-  padding: 3%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  border-radius: 2%;
   background-color: transparent;
-  font-size: 1.5vw;
+  font-size: 1.4vw;
+  padding-top: 3%;
+  padding-bottom: 3%;
   color: #0c0707;
   cursor: pointer;
 }
 .category-item-active {
-  width: 75%;
+  width: 50%;
   color: #ffffff;
+  padding: 3%;
+  font-size: 1.5vw;
   background: linear-gradient(to right, rgb(255, 115, 115) , rgb(250, 250, 122));
 }
 .number {
@@ -250,7 +252,6 @@ a {text-decoration: none;}
   align-items: center;
   justify-content: center;
   border: 2px solid #0c0707;
-  border-radius: 5%;
   color: #0c0707;
   cursor: pointer;
 }
@@ -266,7 +267,6 @@ a {text-decoration: none;}
   width: 49%;
   height: 60%;
   border: 0.5px solid #0c0707;
-  border-radius: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -306,7 +306,6 @@ a {text-decoration: none;}
   width: 85%;
   height: 8%;
   border: 0.5px solid #ffffff;
-  border-radius: 2%;
   margin-bottom: 5%;
   display: flex;
   align-items: center;
@@ -346,7 +345,6 @@ a {text-decoration: none;}
 .competence-progress {
   max-width: 65%;
   height: 6px;
-  border-radius: 10px;
   background: linear-gradient(to right, rgb(145, 255, 0) , rgb(166, 255, 0));
 }
 .profile {
@@ -391,7 +389,6 @@ a {text-decoration: none;}
   height: 60%;
   border: 0.2vw solid #ffffff;
   background-color: #008CBA;
-  border-radius: 50%;
   color: #0c0707;
   cursor: pointer;
 }
@@ -436,7 +433,6 @@ a {text-decoration: none;}
   align-items: center;
   justify-content: center;
   border: 2px solid #0c0707;
-  border-radius: 2%;
   color: #0c0707;
   cursor: pointer;
 }
@@ -568,7 +564,6 @@ a {text-decoration: none;}
   color: #ffffff;
   font-weight: bold;
   background: linear-gradient(to right, red , blue);
-  border-radius: 5%;
   cursor: pointer;
 }
 .btn-contact {
@@ -577,7 +572,6 @@ a {text-decoration: none;}
   position: absolute;
   z-index: 2;
   border: 0.5px solid #f7f1f1;
-  border-radius: 2%;
   display: flex;
   align-items: center;
   justify-content: center;

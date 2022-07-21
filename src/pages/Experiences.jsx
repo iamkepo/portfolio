@@ -2,25 +2,61 @@ import { useEffect, useState } from "react";
 const Experiences = (props) => {
   const experiences = [
     {
+      title: "Personnels",
+      projets: [
+        {
+          name: "Pixelswar",
+          img: "",
+          link: "https://pixelswar.herokuapp.com/",
+          description: "Il s'agit d'un jeu web",
+          date: ""
+        },
+        {
+          name: "World Cube",
+          img: "",
+          link: "https://iamkepo.github.io/w_cube/",
+          description: "Il s'agit d'un monde 3D en cube",
+          date: ""
+        },
+        {
+          name: "World Sphère",
+          img: "",
+          link: "https://iamkepo.github.io/w_sphere/",
+          description: "Il s'agit d'un monde 3D en sphère",
+          date: ""
+        },
+        {
+          name: "Mon portfolio",
+          img: "",
+          link: "https://iamkepo.github.io/portfolio/",
+          description: "Il s'agit de mon portfolio",
+          date: ""
+        },
+      ],
+    },
+    {
       title: "Collaborations",
       projets: [
         {
           name: "Classe 19",
           img: "url('./Tablette.png')",
           link: "https://classe19.com/",
-          description: "Classe19 est une tablette éducative donnant un accès continu à tout un ensemble de ressources éducatives dans les matières principales (Mathématiques, PCT, SVT, Français et Anglais)."
+          description: "Classe19 est une tablette éducative donnant un accès continu à tout un ensemble de ressources éducatives dans les matières principales (Mathématiques, PCT, SVT, Français et Anglais).",
+          date: ""
         },
         {
           name: "PharMap",
           img: "url('./phone.png')",
           link: "https://pharmap.co",
-          description: "PharMap est une appication qui te permet de trouve le médicament que tu cherches en un clic partout au Bénin"
+          description: "PharMap est une appication qui te permet de trouve le médicament que tu cherches en un clic partout au Bénin",
+          date: ""
         },
         {
           name: "Sentinelle",
           img: "url('./sentinelle.webp')",
           link: "",
-          description: "Visite technique, assurance, TVM et bien plus encore… voici autant de documents et pièces qu’il faut absolument garder à jour en tant que propriétaire de voiture."
+          description: "Visite technique, assurance, TVM et bien plus encore… voici autant de documents et pièces qu’il faut absolument garder à jour en tant que propriétaire de voiture.",
+          date: ""
         },
       ],
     },
@@ -31,10 +67,11 @@ const Experiences = (props) => {
           name: "D2A",
           img: "",
           link: "https://d2a.swiitch.design/",
-          description: "DU PROFESSIONNALISME AU SERVICE DU DROIT ET DE LA JUSTICE, Nous vous accompagnons dans la recherche de solutions à vos difficultés et anticipons sur vos situations heureuses ou moins favorables."
+          description: "DU PROFESSIONNALISME AU SERVICE DU DROIT ET DE LA JUSTICE, Nous vous accompagnons dans la recherche de solutions à vos difficultés et anticipons sur vos situations heureuses ou moins favorables.",
+          date: ""
         },
       ],
-    },
+    }
   ];
 
   const [step, setstep] = useState(0);
@@ -49,7 +86,7 @@ const Experiences = (props) => {
 
       <div className="projets">
 
-        <div className="big-title">Mes Expériences Professionnels</div>
+        <div className="big-title">Mes Expériences Professionelles</div>
         <div className="category">
           {
             experiences.map((item, i)=>(
@@ -59,7 +96,7 @@ const Experiences = (props) => {
                 onClick={()=> {setnext(0); setstep(i)}}
               >
                 {item.title} 
-                <div className="number">{item.projets.length > 9 ? "": "0"}{item.projets.length} projets</div> 
+                <div className="number">{item.projets.length > 9 ? "": "0"}{item.projets.length} projet{item.projets.length > 1 ? "s": ""}</div> 
               </div>
             ))
           }
