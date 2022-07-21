@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 const Experiences = (props) => {
   const experiences = [
     {
-      title: "Personnels",
+      title: "Projets personnels",
       projets: [
         {
-          name: "Pixelswar",
+          name: "Pixels war",
           img: "",
           link: "https://pixelswar.herokuapp.com/",
           description: "Il s'agit d'un jeu web",
@@ -61,7 +62,7 @@ const Experiences = (props) => {
       ],
     },
     {
-      title: "Prestations",
+      title: "Prèstations",
       projets: [
         {
           name: "D2A",
@@ -74,13 +75,11 @@ const Experiences = (props) => {
     }
   ];
 
-  const [step, setstep] = useState(0);
-  const [next, setnext] = useState(0);
-
+  const params = useParams();
+  
   useEffect(()=>{
-    props.ready()
+    props.ready();
   }, [props])
-
   return (
     <div className="container">
 
@@ -90,14 +89,13 @@ const Experiences = (props) => {
         <div className="category">
           {
             experiences.map((item, i)=>(
-              <div 
+              <Link to={"/experiences/"+i+"/0"}
                 key={i} 
-                className={i === step ? "category-item category-item-active" : "category-item"}
-                onClick={()=> {setnext(0); setstep(i)}}
+                className={i === parseInt(params.group) ? "category-item category-item-active" : "category-item"}
               >
                 {item.title} 
                 <div className="number">{item.projets.length > 9 ? "": "0"}{item.projets.length} projet{item.projets.length > 1 ? "s": ""}</div> 
-              </div>
+              </Link>
             ))
           }
         </div>
@@ -105,23 +103,28 @@ const Experiences = (props) => {
         <div className="caroussel">
           <div className="slide">
             <div className="polaroid shadow">
-              <div className="img" style={{backgroundImage: experiences[step].projets[next].img}}></div>
-              <div className="name">{experiences[step].projets[next].name}</div>
+              <div className="img" style={{backgroundImage: experiences[parseInt(params.group)].projets[parseInt(params.item)].img}}></div>
+              <div className="name">{experiences[parseInt(params.group)].projets[parseInt(params.item)].name}</div>
             </div>
 
             <div className="description">
-              <div className="title">{experiences[step].projets[next].name}</div>
-              <div className="text">{experiences[step].projets[next].description}
+              <div className="title">{experiences[parseInt(params.group)].projets[parseInt(params.item)].name}</div>
+              <div className="text">{experiences[parseInt(params.group)].projets[parseInt(params.item)].description}
               </div>
-              <a href={experiences[step].projets[next].link} className="more"> Voir + </a>
+              <a href={experiences[parseInt(params.group)].projets[parseInt(params.item)].link} className="more"> Voir + </a>
             </div>
           </div>
 
         </div>
 
         <div className="passeur">
-          <div className="passeur-item" onClick={()=> (next !== 0) && setnext(next-1)}> <i className="fas fa-arrow-left"></i> Précédent </div>
-          <div className="passeur-item" onClick={()=> (experiences[step].projets.length-1 !== next) &&setnext(next+1)}> Suivent <i className="fas fa-arrow-right"></i> </div>
+          <Link className="passeur-item" to={"/experiences/"+parseInt(params.group)+"/"+(parseInt(params.item) !== 0 ? (parseInt(params.item)-1) : 0)}> 
+            <i className="fas fa-arrow-left"></i> 
+            Précédent 
+            </Link>
+          <Link className="passeur-item" to={"/experiences/"+parseInt(params.group)+"/"+(experiences[parseInt(params.group)].projets.length-1 > parseInt(params.item) ? (parseInt(params.item)+1) : experiences[parseInt(params.group)].projets.length-1)}> 
+            Suivent <i className="fas fa-arrow-right"></i> 
+          </Link>
         </div>
 
       </div>
@@ -132,14 +135,13 @@ const Experiences = (props) => {
         </div>
         <div className="details-list">
           {
-            experiences[step].projets.map((item, i)=>(
-              <div 
+            experiences[parseInt(params.group)].projets.map((item, i)=>(
+              <Link to={"/experiences/"+parseInt(params.group)+"/"+i}
                 key={i} 
-                className={i === next ? "list-item list-item-active" : "list-item"}
-                onClick={()=>setnext(i)}
+                className={i === parseInt(params.item) ? "list-item list-item-active" : "list-item"}
               >
                 {item.name} 
-              </div>
+              </Link>
             ))
           }
         </div>

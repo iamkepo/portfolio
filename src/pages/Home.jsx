@@ -81,7 +81,7 @@ const Home = (props) => {
         </div>
 
         <div className="foot">
-        <Link to="/experiences" className="foot-more"> C o m m e n c e r </Link>
+        <Link to="/experiences/0/0" className="foot-more"> C o m m e n c e r </Link>
         </div>
 
       </div>

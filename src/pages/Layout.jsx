@@ -4,7 +4,7 @@ import { Outlet, Link} from "react-router-dom";
 const Layout = (props) => {
 
   useEffect(()=>{
-    //console.log(window.innerWidth);
+    
     if (window.innerWidth > 500) {
 
       var cursor = document.querySelector('.cursor');
@@ -36,8 +36,7 @@ const Layout = (props) => {
           </Link>
         </div>
         <div className="menu">
-          <Link to="/experiences" className={props.clickpage === "experiences" ? "menu-item menu-item-active" : "menu-item"}>Expériences</Link>
-          {/* <Link to="/projets" className={props.clickpage === "projets" ? "menu-item menu-item-active" : "menu-item"}>Projets</Link> */}
+          <Link to="/experiences/0/0" className={props.clickpage === "experiences" ? "menu-item menu-item-active" : "menu-item"}>Expériences</Link>
           <Link to="/services" className={props.clickpage === "services" ? "menu-item menu-item-active" : "menu-item"}>Services</Link>
           <Link to="/socials" className={props.clickpage === "socials" ? "menu-item menu-item-active" : "menu-item"}>Socials</Link>
         </div>

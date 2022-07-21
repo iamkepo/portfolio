@@ -168,8 +168,6 @@ a {text-decoration: none;}
   justify-content: space-between;
   background-color: transparent;
   font-size: 1.4vw;
-  padding-top: 3%;
-  padding-bottom: 3%;
   color: #0c0707;
   cursor: pointer;
 }
@@ -390,6 +388,7 @@ a {text-decoration: none;}
   border: 0.2vw solid #ffffff;
   background-color: #008CBA;
   color: #0c0707;
+  border-radius: 50%;
   cursor: pointer;
 }
 .other-item-active{
@@ -398,7 +397,7 @@ a {text-decoration: none;}
 }
 .presentation {
   width: 50%;
-  height: 100%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
