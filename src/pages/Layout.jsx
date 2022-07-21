@@ -37,7 +37,7 @@ const Layout = (props) => {
         </div>
         <div className="menu">
           <Link to="/experiences" className={props.clickpage === "experiences" ? "menu-item menu-item-active" : "menu-item"}>Expériences</Link>
-          <Link to="/projets" className={props.clickpage === "projets" ? "menu-item menu-item-active" : "menu-item"}>Projets</Link>
+          {/* <Link to="/projets" className={props.clickpage === "projets" ? "menu-item menu-item-active" : "menu-item"}>Projets</Link> */}
           <Link to="/services" className={props.clickpage === "services" ? "menu-item menu-item-active" : "menu-item"}>Services</Link>
           <Link to="/socials" className={props.clickpage === "socials" ? "menu-item menu-item-active" : "menu-item"}>Socials</Link>
         </div>
