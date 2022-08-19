@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Contact = (props) => {
@@ -32,11 +33,23 @@ const Contact = (props) => {
         return;
       }
     }
-    // setnom("");
-    // setemail("");
-    // setmessage("");
-    //alert(JSON.stringify(data))
-    alert("Désolé votre message ne peut être envoyer actuellement")
+    axios({
+      method: "post",
+      url: 'https://zappe.herokuapp.com/api/public/stock/post', 
+      data: {
+        data: data,
+        table: "messages"
+      }})
+    .then((response) => {
+      setnom("");
+      setemail("");
+      setmessage("");
+      alert("Votre message été envoyer avec succès");
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Désolé votre message ne peut être envoyer")
+    });
   }
 
   return (
