@@ -173,6 +173,12 @@ a {text-decoration: none;}
 }
 .category-item-active {
   width: 50%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: transparent;
   color: #ffffff;
   padding: 3%;
   font-size: 1.5vw;

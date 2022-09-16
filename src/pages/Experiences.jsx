@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 const Experiences = (props) => {
+  const [step, setstep] = useState(0);
   
   const experiences = [
     {
-      title: "Collaborations",
+      title: "Collaborations en entreprises",
       projets: [
         {
           name: "Classe 19",
@@ -30,7 +31,7 @@ const Experiences = (props) => {
       ],
     },
     {
-      title: "Prèstations",
+      title: "Prèstations de services",
       projets: [
         {
           name: "D2A",
@@ -80,7 +81,38 @@ const Experiences = (props) => {
   
   useEffect(()=>{
     props.ready();
-  }, [props])
+    let stock = 0;
+    experiences.forEach((item, i) => {
+      if (i < parseInt(params.group)) {
+        stock = stock + item.projets.length-1;
+      }
+    });
+    setstep(stock);
+  }, [props, experiences, params])
+  
+  const pred = () => {
+    let group = parseInt(params.group);
+    let item = parseInt(params.item);
+    let limit = experiences[group-1] ? experiences[group-1].projets.length-1 : 0;
+    if (item !== 0) {
+      return "/experiences/"+group+"/"+(item-1);
+    } else {
+      return "/experiences/"+(group === 0 ? 0 : group-1)+"/"+limit;
+    }
+  }
+  const next = () => {
+    let group = parseInt(params.group);
+    let item = parseInt(params.item);
+    let limit = experiences[group].projets.length-1;
+    let overfow = experiences.length-1;
+
+    if (item < limit) {
+      return "/experiences/"+group+"/"+(item+1);
+    } else {
+      return "/experiences/"+(group === overfow ? group : (group+1))+"/"+(group === overfow ? limit : 0);
+    }
+    
+  }
   return (
     <div className="container">
 
@@ -92,7 +124,7 @@ const Experiences = (props) => {
             experiences.map((item, i)=>(
               <Link to={"/experiences/"+i+"/0"}
                 key={i} 
-                className={i === parseInt(params.group) ? "category-item category-item-active" : "category-item"}
+                className={i === parseInt(params.group) ? "category-item-active" : "category-item"}
               >
                 {item.title} 
                 <div className="number">{item.projets.length > 9 ? "": "0"}{item.projets.length} projet{item.projets.length > 1 ? "s": ""}</div> 
@@ -119,11 +151,15 @@ const Experiences = (props) => {
         </div>
 
         <div className="passeur">
-          <Link className="passeur-item" to={"/experiences/"+parseInt(params.group)+"/"+(parseInt(params.item) !== 0 ? (parseInt(params.item)-1) : 0)}> 
+          <Link className="passeur-item" to={pred()}> 
             <i className="fas fa-arrow-left"></i> 
           </Link>
-          <div className="passeur-number">{parseInt(params.item)+1} / {experiences[parseInt(params.group)].projets.length}</div>
-          <Link className="passeur-item" to={"/experiences/"+parseInt(params.group)+"/"+(experiences[parseInt(params.group)].projets.length-1 > parseInt(params.item) ? (parseInt(params.item)+1) : experiences[parseInt(params.group)].projets.length-1)}> 
+          <div className="passeur-number">
+            {step+1}
+            {" / "}
+            {experiences.map(item => item.projets.length).reduce((total, num) => (total + num))}
+          </div>
+          <Link className="passeur-item" to={next()}> 
             <i className="fas fa-arrow-right"></i> 
           </Link>
         </div>

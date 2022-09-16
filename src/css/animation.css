@@ -44,10 +44,9 @@
   transition: 1s;
 }
 .category-item:hover {
-  width: 50%;
-  padding: 3%;
+  width: 25%;
+  padding: 2%;
   color: #ffffff;
-  font-size: 1.5vw;
   background: linear-gradient(to right, rgb(255, 115, 115) , rgb(250, 250, 122));
 }
 
