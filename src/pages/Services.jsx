@@ -4,25 +4,25 @@ const Services = (props) => {
     {
       title: "Standard",
       offres: ["-Site Web Vitrine (ou Landing page)"],
-      forfait: 499,
+      forfait: 999,
       desc: "Il s'agira de créer pour vous un site web Vitrine avec un service de designer intéger mais sans back-end"
     },
     {
       title: "Silver",
       offres: ["-Application Web", "(Blog, E-commerce, E-learning...)", "-Dashboard"],
-      forfait: 999,
+      forfait: 4999,
       desc: "Il s'agira de créer pour vous un site web Blog, E-commerce, ...; avec un service de designer intéger et avec un back-end"
     },
     {
       title: "Gold",
       offres: ["-Application Mobile", "(Bonus un Landing page)", "-Dashboard"],
-      forfait: 1999,
+      forfait: 5999,
       desc: "Il s'agira de créer pour vous une appication Mobile Android ou IOS avec un service de designer intéger et avec un back-end"
     },
     {
       title: "Diamond",
       offres: ["-Application Mobile", "-Application Web", "-Dashboard"],
-      forfait: 2999,
+      forfait: 9999,
       desc: "Il s'agira de créer pour vous un site web Blog, E-commerce, ...; une appication Mobile Android ou IOS avec un service de designer intéger et avec un back-end"
     },
   ];
