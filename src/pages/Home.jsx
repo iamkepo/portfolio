@@ -1,107 +1,151 @@
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-const Home = (props) => {
-  const photos = [
-    "url('./IMG_20220414_083526_888.jpg')",
-    "url('./IMG_20220102_120225_359.jpg')",
-    "url('./IMG_20220102_220726_801.jpg')",
-    "url('./IMG_20220105_095412_378.jpg')",
-    "url('./IMG_20220126_121921_848.webp')",
-  ];
-  const competences = [
-    //{ name: "C", progress: 90 },
-    //{ name: "C++", progress: 70 },
-    { name: "HTML", progress: 100 },
-    { name: "CSS", progress: 100 },
-    //{ name: "SASS", progress: 50 },
-    { name: "Bootstrap CSS", progress: 80 },
-    { name: "Tailwind CSS", progress: 90 },
-    { name: "JavaScript", progress: 90 },
-    { name: "Vue JS", progress: 90 },
-    { name: "Nuxt JS", progress: 80 },
-    //{ name: "NativeScript Vue", progress: 70 },
-    { name: "React JS", progress: 100 },
-    { name: "Next JS", progress: 80 },
-    { name: "React Native", progress: 100 },
-    //{ name: "Firebase", progress: 60 },
-    { name: "Node JS", progress: 90 },
-    { name: "Express JS", progress: 90 },
-    { name: "Socket.io", progress: 80 },
-    { name: "MongoDB", progress: 100 },
-    { name: "PHP", progress: 90 },
-    { name: "MySQL", progress: 90 },
-    { name: "Electron JS", progress: 90 },
-    { name: "Three JS", progress: 70 },
-  ];
-  const [photo, setphoto] = useState(photos[0]);
-  
-  useEffect(()=>{
-    props.ready()
-  }, [props])
+import { Container, Row, Col, Card, Button, ProgressBar, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { profileData } from "../data/profile";
+
+const Home = ({ setActiveSection }) => {
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+
+  useEffect(() => {
+    setActiveSection('home');
+  }, [setActiveSection]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhoto((prev) => (prev + 1) % profileData.photos.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="container">
-
-      <div className="projets">
-
-        <div className="big-title">Mon Profile</div>
-
-        <div className="profile">
-
-          <div className="photo-box">
-
-            <div className="photo-img shadow" style={{backgroundImage: photo}}></div>
-            <div className="photo-other">
-              {
-                photos.map((item, i)=>(
-                  <div key={i} className={item === photo ? "other-item other-item-active" : "other-item"} onClick={()=>setphoto(item)}></div>
-                ))
-              }
-            </div>
-
-          </div>
-
-          <div className="presentation">
-
-            <div className="first">
-              KAKPO
-            </div>
-            <div className="last">
-              Christ-Amour  Dieu-Merci
-            </div>
-            <div className="text">
-              Je suis <span className="strong">développeur</span> d'applications  <span className="strong">WEB </span>, 
-              <span className="strong"> Mobile</span> et <span className="strong"> Desktop</span> 
-            </div>
-            <div className="text">
-              J'ai également une assez bonne maitrise des langages de programmations et frameworks que j'ai eu à citer dans mes compétences.
-            </div>
-
-          </div>
-
-        </div>
-
-        <div className="foot">
-        <Link to="/experiences/0/0" className="foot-more"> C o m m e n c e r </Link>
-        </div>
-
-      </div>
-
-      <div className="details">
-        <div className="details-title">
-          Mes compétences 
-        </div>
-        <div className="competences-list">
-          {
-            competences.map((item, i)=>(
-              <div key={i} className="competence">
-                <div className="competence-text">{item.name}</div> 
-                <div className="competence-progress" style={{width: item.progress-35+"%"}}></div>
+    <>
+      {/* Hero Section */}
+      <section className="hero-section">
+        <Container>
+          <Row className="align-items-center min-vh-100">
+            <Col lg={6} className="text-center text-lg-start">
+              <div className="hero-content">
+                <h1 className="hero-title">
+                  Bonjour, je suis <br />
+                  <span className="text-gradient">Christ-Amour</span>
+                </h1>
+                <h2 className="hero-subtitle">Développeur Full Stack</h2>
+                <p className="hero-description lead">
+                  {profileData.description}
+                </p>
+                <div className="hero-buttons mt-4">
+                  <Button 
+                    as={Link} 
+                    to="/experiences/0/0" 
+                    variant="primary" 
+                    size="lg" 
+                    className="me-3 mb-2"
+                  >
+                    Voir mes projets
+                  </Button>
+                  <Button 
+                    as={Link} 
+                    to="/contact" 
+                    variant="outline-primary" 
+                    size="lg"
+                    className="mb-2"
+                  >
+                    Me contacter
+                  </Button>
+                </div>
               </div>
-            ))
-          }
-        </div>
-      </div>
-    </div>
+            </Col>
+            <Col lg={6} className="text-center">
+              <div className="hero-image-container">
+                <div className="hero-image-wrapper">
+                  <Image
+                    src={profileData.photos[currentPhoto]}
+                    alt="Christ-Amour Kakpo"
+                    className="hero-image"
+                    fluid
+                  />
+                </div>
+                <div className="photo-indicators mt-3">
+                  {profileData.photos.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`photo-indicator ${index === currentPhoto ? 'active' : ''}`}
+                      onClick={() => setCurrentPhoto(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* Skills Section */}
+      <section className="skills-section py-5">
+        <Container>
+          <Row>
+            <Col lg={12} className="text-center mb-5">
+              <h2 className="section-title">Mes Compétences</h2>
+              <p className="section-subtitle">
+                Technologies et frameworks que je maîtrise
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={8} className="mx-auto">
+              <Card className="skills-card shadow-lg">
+                <Card.Body className="p-4">
+                  <Row>
+                    {profileData.competences.map((skill, index) => (
+                      <Col md={6} key={index} className="mb-4">
+                        <div className="skill-item">
+                          <div className="d-flex justify-content-between mb-2">
+                            <span className="skill-name">{skill.name}</span>
+                            <span className="skill-percentage">{skill.progress}%</span>
+                          </div>
+                          <ProgressBar 
+                            now={skill.progress} 
+                            className="skill-progress"
+                            variant={skill.progress >= 90 ? 'success' : skill.progress >= 70 ? 'info' : 'warning'}
+                          />
+                        </div>
+                      </Col>
+                    ))}
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
+      {/* CTA Section */}
+      <section className="cta-section py-5">
+        <Container>
+          <Row>
+            <Col lg={8} className="mx-auto text-center">
+              <Card className="cta-card shadow-lg">
+                <Card.Body className="p-5">
+                  <h3 className="cta-title mb-3">Prêt à démarrer votre projet ?</h3>
+                  <p className="cta-description mb-4">
+                    Discutons de vos besoins et créons ensemble quelque chose d'extraordinaire.
+                  </p>
+                  <Button 
+                    as={Link} 
+                    to="/contact" 
+                    variant="primary" 
+                    size="lg"
+                    className="cta-button"
+                  >
+                    Commencer maintenant
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+    </>
   );
 };
 

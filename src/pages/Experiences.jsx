@@ -1,120 +1,211 @@
 import { useEffect, useState } from "react";
+import { Container, Row, Col, Card, Button, Badge, Nav } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
-const Experiences = (props) => {
-
-  const [step, setstep] = useState([]);
-
+const Experiences = ({ setActiveSection, experiences }) => {
+  const [currentProject, setCurrentProject] = useState(null);
   const params = useParams();
 
-  useEffect(()=>{
-    props.ready();
-    let stock = [];
-    props.experiences.forEach((group, i) => {
-      group.projets.forEach((item, j) => {
-        if (i <= parseInt(params.group) && j <= parseInt(params.item)) {
-          stock = stock.concat(item);
-        }
-      })
-    });
-    setstep(stock);
-  }, [props, params])
-  
-  const pred = () => {
-    let group = parseInt(params.group);
-    let item = parseInt(params.item);
-    let limit = props.experiences[group-1] ? props.experiences[group-1].projets.length-1 : 0;
-    if (item !== 0) {
-      return "/experiences/"+group+"/"+(item-1);
-    } else {
-      return "/experiences/"+(group === 0 ? 0 : group-1)+"/"+limit;
+  useEffect(() => {
+    setActiveSection('experiences');
+    if (experiences && params.group !== undefined && params.item !== undefined) {
+      const groupIndex = parseInt(params.group);
+      const itemIndex = parseInt(params.item);
+      if (experiences[groupIndex] && experiences[groupIndex].projets[itemIndex]) {
+        setCurrentProject(experiences[groupIndex].projets[itemIndex]);
+      }
     }
-  }
-  
-  const next = () => {
-    let group = parseInt(params.group);
-    let item = parseInt(params.item);
-    let limit = props.experiences[group].projets.length-1;
-    let overfow = props.experiences.length-1;
+  }, [setActiveSection, experiences, params]);
 
-    if (item < limit) {
-      return "/experiences/"+group+"/"+(item+1);
-    } else {
-      return "/experiences/"+(group === overfow ? group : (group+1))+"/"+(group === overfow ? limit : 0);
-    }
+  const getNavigationUrls = () => {
+    const group = parseInt(params.group);
+    const item = parseInt(params.item);
     
+    let prevUrl = null;
+    let nextUrl = null;
+
+    if (item > 0) {
+      prevUrl = `/experiences/${group}/${item - 1}`;
+    } else if (group > 0) {
+      const prevGroupLength = experiences[group - 1].projets.length;
+      prevUrl = `/experiences/${group - 1}/${prevGroupLength - 1}`;
+    }
+
+    if (item < experiences[group].projets.length - 1) {
+      nextUrl = `/experiences/${group}/${item + 1}`;
+    } else if (group < experiences.length - 1) {
+      nextUrl = `/experiences/${group + 1}/0`;
+    }
+
+    return { prevUrl, nextUrl };
+  };
+
+  const { prevUrl, nextUrl } = getNavigationUrls();
+
+  if (!experiences || !currentProject) {
+    return <div>Chargement...</div>;
   }
 
   return (
-    <div className="container">
+    <div className="experiences-page">
+      <Container className="py-5">
+        <Row className="mb-5">
+          <Col lg={12} className="text-center">
+            <h1 className="page-title">Mes Expériences Professionnelles</h1>
+            <p className="page-subtitle">
+              Découvrez mes projets et réalisations
+            </p>
+          </Col>
+        </Row>
 
-      <div className="projets">
+        {/* Categories Navigation */}
+        <Row className="mb-5">
+          <Col lg={12}>
+            <Nav variant="pills" className="justify-content-center category-nav">
+              {experiences.map((category, index) => (
+                <Nav.Item key={index}>
+                  <Nav.Link
+                    as={Link}
+                    to={`/experiences/${index}/0`}
+                    active={index === parseInt(params.group)}
+                    className="category-pill"
+                  >
+                    {category.title}
+                    <Badge bg="light" text="dark" className="ms-2">
+                      {category.projets.length}
+                    </Badge>
+                  </Nav.Link>
+                </Nav.Item>
+              ))}
+            </Nav>
+          </Col>
+        </Row>
 
-        <div className="big-title">Mes Expériences Professionelles</div>
-        <div className="category">
-          {
-            props.experiences.map((item, i)=>(
-              <Link to={"/experiences/"+i+"/0"}
-                key={i} 
-                className={i === parseInt(params.group) ? "category-item-active" : "category-item"}
-              >
-                {item.title} 
-                <div className="number">{item.projets.length > 9 ? "": "0"}{item.projets.length} projet{item.projets.length > 1 ? "s": ""}</div> 
-              </Link>
-            ))
-          }
-        </div>
+        {/* Current Project */}
+        <Row className="mb-5">
+          <Col lg={8} className="mx-auto">
+            <Card className="project-card shadow-lg">
+              <Row className="g-0">
+                <Col md={6}>
+                  <div className="project-image-container">
+                    <img
+                      src={currentProject.img}
+                      alt={currentProject.name}
+                      className="project-image"
+                    />
+                  </div>
+                </Col>
+                <Col md={6}>
+                  <Card.Body className="p-4">
+                    <div className="project-header mb-3">
+                      <h3 className="project-title">{currentProject.name}</h3>
+                      <Badge bg="primary" className="project-date">
+                        {currentProject.date}
+                      </Badge>
+                    </div>
+                    
+                    <p className="project-description mb-4">
+                      {currentProject.description}
+                    </p>
 
-        <div className="caroussel">
-          <div className="slide">
-            <div className="polaroid shadow">
-              <div className="img" style={{backgroundImage: props.experiences[parseInt(params.group)].projets[parseInt(params.item)].img}}></div>
-              <div className="name">{props.experiences[parseInt(params.group)].projets[parseInt(params.item)].name}</div>
+                    {currentProject.technologies && (
+                      <div className="project-technologies mb-4">
+                        <h6 className="mb-2">Technologies utilisées :</h6>
+                        <div className="tech-badges">
+                          {currentProject.technologies.map((tech, index) => (
+                            <Badge key={index} bg="secondary" className="me-2 mb-2">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {currentProject.link && (
+                      <Button
+                        href={currentProject.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        variant="primary"
+                        className="project-link-btn"
+                      >
+                        <i className="fas fa-external-link-alt me-2"></i>
+                        Voir le projet
+                      </Button>
+                    )}
+                  </Card.Body>
+                </Col>
+              </Row>
+            </Card>
+          </Col>
+        </Row>
+
+        {/* Navigation */}
+        <Row className="mb-5">
+          <Col lg={8} className="mx-auto">
+            <div className="d-flex justify-content-between align-items-center project-navigation">
+              {prevUrl ? (
+                <Button as={Link} to={prevUrl} variant="outline-primary">
+                  <i className="fas fa-arrow-left me-2"></i>
+                  Précédent
+                </Button>
+              ) : (
+                <div></div>
+              )}
+              
+              <div className="project-counter">
+                <span className="current-project">
+                  {parseInt(params.item) + 1}
+                </span>
+                <span className="separator"> / </span>
+                <span className="total-projects">
+                  {experiences[parseInt(params.group)].projets.length}
+                </span>
+              </div>
+
+              {nextUrl ? (
+                <Button as={Link} to={nextUrl} variant="outline-primary">
+                  Suivant
+                  <i className="fas fa-arrow-right ms-2"></i>
+                </Button>
+              ) : (
+                <div></div>
+              )}
             </div>
+          </Col>
+        </Row>
 
-            <div className="description">
-              <div className="title">{props.experiences[parseInt(params.group)].projets[parseInt(params.item)].name}</div>
-              <div className="text">{props.experiences[parseInt(params.group)].projets[parseInt(params.item)].description}</div>
-              <div className="number">{props.experiences[parseInt(params.group)].projets[parseInt(params.item)].date}</div>
-              <a href={props.experiences[parseInt(params.group)].projets[parseInt(params.item)].link} className="more"> Voir + </a>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="passeur">
-          <Link className="passeur-item" to={pred()}> 
-            <i className="fas fa-arrow-left"></i> 
-          </Link>
-          <div className="passeur-number">
-            {step.length}
-            {" / "}
-            {props.experiences.map(item => item.projets.length).reduce((total, num) => (total + num))}
-          </div>
-          <Link className="passeur-item" to={next()}> 
-            <i className="fas fa-arrow-right"></i> 
-          </Link>
-        </div>
-
-      </div>
-
-      <div className="details">
-        <div className="details-title">
-          Liste des Projets
-        </div>
-        <div className="details-list">
-          {
-            props.experiences[parseInt(params.group)].projets.map((item, i)=>(
-              <Link to={"/experiences/"+parseInt(params.group)+"/"+i}
-                key={i} 
-                className={i === parseInt(params.item) ? "list-item list-item-active" : "list-item"}
-              >
-                {item.name} 
-              </Link>
-            ))
-          }
-        </div>
-      </div>
+        {/* Projects List */}
+        <Row>
+          <Col lg={10} className="mx-auto">
+            <Card className="projects-list-card shadow">
+              <Card.Header>
+                <h5 className="mb-0">
+                  {experiences[parseInt(params.group)].title}
+                </h5>
+              </Card.Header>
+              <Card.Body>
+                <Row>
+                  {experiences[parseInt(params.group)].projets.map((project, index) => (
+                    <Col md={6} lg={4} key={index} className="mb-3">
+                      <Card 
+                        className={`project-mini-card ${index === parseInt(params.item) ? 'active' : ''}`}
+                        as={Link}
+                        to={`/experiences/${params.group}/${index}`}
+                      >
+                        <Card.Body className="text-center p-3">
+                          <h6 className="project-mini-title">{project.name}</h6>
+                          <small className="text-muted">{project.date}</small>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  ))}
+                </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };
