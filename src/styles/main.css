@@ -830,3 +830,12 @@ html {
 .transition-all {
   transition: all 0.3s ease;
 }
+
+  @keyframes scintillement {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  .scintille {
+    animation: scintillement 0.1s infinite;
+  }

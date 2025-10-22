@@ -30,12 +30,12 @@ export const profileData = {
     { name: "Three JS", progress: 70 },
   ],
   socials: [
-    {link: "https://web.facebook.com/christamour.kakpo.5", icon: "fab fa-facebook", text: "christamour.kakpo.5"},
-    {link: "https://twitter.com/ChristAmourKak1?t=vssD-u-B_eOthQpSozXy_A&s=09", icon: "fab fa-twitter", text: "ChristAmourKak1"},
-    {link: "https://www.linkedin.com/in/christ-amour-kakpo-223b61172", icon: "fab fa-linkedin", text: "christ-amour-kakpo"},
-    {link: "https://youtube.com/channel/UCGXcAnRnLBJ7ZdI_4H2jOrw", icon: "fab fa-youtube", text: "Chaine youtube"},
-    {link: "https://instagram.com/i_am_kepo?igshid=YmMyMTA2M2Y=", icon: "fab fa-instagram", text: "i_am_kepo"},
-    {link: "https://wa.me/22996772269", icon: "fab fa-whatsapp", text: "+229 96772269"},
-    {link: "https://github.com/iamkepo", icon: "fab fa-github", text: "iamkepo"},
+    {link: "https://web.facebook.com/christamour.kakpo.5", icon: "fab fa-facebook", text: "christamour.kakpo.5" , bg: "blue"},
+    {link: "https://twitter.com/ChristAmourKak1?t=vssD-u-B_eOthQpSozXy_A&s=09", icon: "fab fa-twitter", text: "ChristAmourKak1" , bg: "blue"},
+    {link: "https://www.linkedin.com/in/christ-amour-kakpo-223b61172", icon: "fab fa-linkedin", text: "christ-amour-kakpo" , bg: "blue"},
+    {link: "https://youtube.com/channel/UCGXcAnRnLBJ7ZdI_4H2jOrw", icon: "fab fa-youtube", text: "Chaine youtube" , bg: "red"},
+    {link: "https://instagram.com/i_am_kepo?igshid=YmMyMTA2M2Y=", icon: "fab fa-instagram", text: "i_am_kepo" , bg: "red"},
+    {link: "https://wa.me/22996772269", icon: "fab fa-whatsapp", text: "+229 96772269", bg: "green"},
+    {link: "https://github.com/iamkepo", icon: "fab fa-github", text: "iamkepo" , bg: "black"},
   ]
 };

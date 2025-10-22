@@ -160,10 +160,10 @@ const Contact = ({ setActiveSection }) => {
                       Pour une réponse rapide, vous pouvez aussi m'écrire directement
                     </p>
                     <Button
-                      href="mailto:contact@iamkepo.com"
+                      href="mailto:christamour.kakpo@gmail.com"
                       variant="outline-primary"
                     >
-                      contact@iamkepo.com
+                      christamour.kakpo@gmail.com
                     </Button>
                   </Card.Body>
                 </Card>
@@ -187,31 +187,6 @@ const Contact = ({ setActiveSection }) => {
                 </Card>
               </Col>
             </Row>
-          </Col>
-        </Row>
-
-        {/* Social Media */}
-        <Row className="mt-5">
-          <Col lg={8} className="mx-auto">
-            <Card className="social-card shadow">
-              <Card.Body className="text-center p-4">
-                <h5 className="mb-4">Suivez-moi sur les réseaux sociaux</h5>
-                <div className="social-links-large">
-                  {profileData.socials.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link-large me-3"
-                      title={social.text}
-                    >
-                      <i className={social.icon}></i>
-                    </a>
-                  ))}
-                </div>
-              </Card.Body>
-            </Card>
           </Col>
         </Row>
       </Container>

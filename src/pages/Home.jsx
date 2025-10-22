@@ -5,6 +5,7 @@ import { profileData } from "../data/profile";
 
 const Home = ({ setActiveSection }) => {
   const [currentPhoto, setCurrentPhoto] = useState(0);
+  const elem = document.body;
 
   useEffect(() => {
     setActiveSection('home');
@@ -16,6 +17,16 @@ const Home = ({ setActiveSection }) => {
     }, 4000);
     return () => clearInterval(interval);
   }, []);
+
+  function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+      elem.msRequestFullscreen();
+    }
+  }
 
   return (
     <>
@@ -40,6 +51,7 @@ const Home = ({ setActiveSection }) => {
                     variant="primary" 
                     size="lg" 
                     className="me-3 mb-2"
+                    onClick={openFullscreen}
                   >
                     Voir mes projets
                   </Button>
@@ -136,6 +148,7 @@ const Home = ({ setActiveSection }) => {
                     variant="primary" 
                     size="lg"
                     className="cta-button"
+                    onClick={openFullscreen}
                   >
                     Commencer maintenant
                   </Button>
