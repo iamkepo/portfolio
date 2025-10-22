@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
-import { profileData } from "../data/profile";
 
 const Contact = ({ setActiveSection }) => {
   const [formData, setFormData] = useState({
